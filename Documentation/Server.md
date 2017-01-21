@@ -168,15 +168,18 @@ Field Name | Type | Required | Short Description
 ---- | ---- | ---- | ----
 response | TEXT | Y | User Id provided by the server
 information | TEXT | N | Additional information.
-state_number | LONG | Y | Actual round.
-time_left | LONG | Y | Time left in miliseconds for this state.
+actual_state | DICT | N | Actual map for this round.
+state_number | LONG | N | Actual round.
+time_left | LONG | N | Time left in miliseconds for this state.
 
 Fields Definition:
 * response – Response from server. Can contain one of the [Server Responses](#54-server-responses).
 * information – Additional informations will be returned for specific responses. 
+* actual_state - It is a dict that represents actual state. It is further defined in [State Definition](#51-state-definition).
 * state_number - Unique round identificator for actual state.
+* time_left – This is number of miliseconds that's left in order to finish this part of server state.
 
-Examlpe Message:
+Example Message:
 ```javascript
 {
 	'response': 'DECLINED',
@@ -248,7 +251,7 @@ bombs_left | INTEGER | Number of bombs that this player can place at this round.
 ### 5.4 Server Responses
 Possible server responses on user action.
 
-Response | Description
+Response | Returns  Description
 ---- | ----
 ACCEPTED | Action accepted.
 CANNOT_MOVE | This move cannot be performed. Field is probably occupied.
