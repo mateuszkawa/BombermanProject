@@ -177,3 +177,79 @@ Examlpe Message:
 	'information': 'DEAD'
 }
 ```
+
+## 5 Appendix
+### 5.1 State Definition
+	
+Field Name | Type | Required | Short Description
+---- | ---- | ---- | ----
+field_type | TEXT | Y | Field type.
+Additional fields depends on field type.
+
+### 5.2 Actions
+List of available actions that user can send to server.
+
+Action Name | Description
+---- | ----
+MOVE_DOWN | Moving character down.
+MOVE_LEFT | Moving character left.
+MOVE_RIGHT | Moving character
+MOVE_UP | Moving character up.
+PLACE_BOMB | Placing a bomb.
+STATE | Getting actual state from server.
+
+### 5.3 Field Types
+List of occurable field types.
+
+Field Type | Description
+---- | ----
+FREE | Passable terrain. User is able to stand there. 
+DESTRUCTIBLE | Destructible terrain. Cannot be moved onto, cen be destructed by bomb's explosion.
+INDESTRUCTIBLE | Cannot be stepped or destructed. It blockes the bombs flame.
+OCCUPIED_BOMB | Destructible terrain. Has ticking bomb on it.
+OCCUPIED_UPGRADE | Free terrain. Some one-time upgrade is placed on it.
+OCCUPIED_USER | Free terrain. Player standing on it.
+
+#### 5.3.1 OCCUPIED_BOMB
+
+Field Name | Type | Short Description
+---- | ---- | ----
+bomb_turns_left | INTEGER | Turns left for a bomb to explode.
+bomb_range | INTEGER | Explosion range.
+
+#### 5.3.2 OCCUPIED_UPGRADE
+
+Field Name | Type | Short Description
+---- | ---- | ----
+upgrade_type | TEXT | One of possible upgrades.
+
+Possible upgrade types:
+
+Upgrade | Short Description
+---- | ----
+ADDITIONAL_BOMB | Gives Player additional upgrade.
+EXPLOSION_RANGE | Gives additional 1 tile of range.
+
+#### 5.3.3 OCCUPIED_USER
+
+Field Name | Type | Short Description
+---- | ---- | ----
+user_name | TEXT | User name of player that is standing on field.
+bombs_left | INTEGER | Number of bombs that this player can place at this round.
+
+### 5.4 Server Responses
+Possible server responses on user action.
+
+Response | Description
+---- | ----
+ACCEPTED | Action accepted.
+DECLINED | Action declined. As additional information a couse will be returned.
+OVERWRITTEN | Action for this round has been updated and overwritten. Previous acction will be returned.
+
+#### 5.4.1 DECLINED
+All possible decline additional information:
+
+Response | Description
+---- | ----
+CANNOT_MOVE | This move cannot be performed. Field is probably occupied.
+DEAD | User with specified userID is already dead and cannot perform any actions.
