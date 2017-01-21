@@ -97,7 +97,7 @@ actual_state | DICT | Y | Actual map for this round.
 state_number | LONG | Y | Actual round.
 map_size | TUPLE | Y | Map size height and width
 user_position | TUPLE | N | User position
-time_left | LONG | Y | Time left in miliseconds for this particular phase (registration).
+time_left | LONG | Y | Time left in miliseconds for this state.
 
 Fields Definition:
 * actual_state – It is a dict that represents actual state. It is further defined in State Definition.
@@ -169,6 +169,7 @@ Field Name | Type | Required | Short Description
 response | TEXT | Y | User Id provided by the server
 information | TEXT | N | Additional information.
 state_number | LONG | Y | Actual round.
+time_left | LONG | Y | Time left in miliseconds for this state.
 
 Fields Definition:
 * response – Response from server. Can contain one of the Server Responses.
@@ -180,7 +181,8 @@ Examlpe Message:
 {
 	'response': 'DECLINED',
 	'information': 'DEAD',
-	'state_number': 76
+	'state_number': 76,
+	'time_left': 143
 }
 ```
 
