@@ -69,4 +69,111 @@ Example Message:
 }
 ```
 
+### 4.2 Game Messages
+#### 4.2.1 Actual State
+Client message:
 
+Field Name | Type | Required | Short Description
+---- | ---- | ---- | ----
+user_id | TEXT | N | User Id provided by the server
+action | TEXT | Y | Action name for getting actual state purposes.
+
+Fields Definition:
+* user_id – User Id that was returned from the server for identification purposes. If this filed is provided then server should return actual position of this particular user.
+* action – One of the Action Name from action list (take a look at Actions)
+
+Examlpe Message:
+```javascript
+{
+	'user_id': 'a687346006dd2d95cf33d10cf10b2a9d',
+	'action': 'STATE'
+}
+```
+Server response:
+
+Field Name | Type | Required | Short Description
+---- | ---- | ---- | ----
+actual_state | DICT | Y | Actual map for this round.
+map_size | TUPLE | Y | Map size height and width
+user_position | TUPLE | N | User position
+time_left | LONG | Y | Time left in miliseconds for this particular phase (registration).
+
+Fields Definition:
+* actual_state – It is a dict that represents actual state. It is further defined in State Definition.
+* map_size – 2arg tuple that contains 2 Integer numbers. First one is height of the map and second is width. They are indicating number of fields for example map_size (3, 4) would look like this:
+
+| | | | |
+---- | ---- | ---- | ---- | ----
+(0,0) | (0,1) | (0,2) | (0,3)
+(1,0) | (1,1) | (1,2) | (1,3)
+(2,0) | (2,1) | (2,2) | (2,3)
+
+* user_position – Server sends this information only if  user_id was provided. It is position of a specified user returned as a Tuple
+* time_left - This is number of miliseconds that's left in order to finish this round.
+
+Examlpe Message:
+```javascript
+{
+	'actual_state': {
+		(0, 0): {
+			'field_type': 'OCCUPIED_BOMB',
+			'bomb_turns_left': 2,
+			'bomb_range': 3
+		},
+		(0, 1): {
+			'field_type': 'OCCUPIED_USER',
+			'user_name': 'Example_bot_1',
+			'bombs_left': 0
+		},
+		(1, 0): {
+			'field_type': 'OCCUPIED_UPGRADE',
+			'upgrade_type': 'ADDITIONAL_BOMB'
+		},
+		(1, 1): {
+			'field_type': 'INDESTRUCTIBLE'
+		}
+	},
+	'map_size': (2, 2),
+	'user_position': (1,1),
+	'time_left': 190
+}
+```
+
+#### 4.2.2 User Action
+Client message:
+
+Field Name | Type | Required | Short Description
+---- | ---- | ---- | ----
+user_id | TEXT | Y | User Id provided by the server
+action | TEXT | Y | Action name chosen by user.
+
+Fields Definition:
+* user_id – User Id that was returned from the server for identification purposes.
+* action – One of the Action Name from action list (take a look at Actions)
+
+Examlpe Message:
+```javascript
+{
+	'user_id': 'a687346006dd2d95cf33d10cf10b2a9d',
+	'action': 'MOVE_LEFT'
+}
+```
+
+Server message:
+
+Field Name | Type | Required | Short Description
+---- | ---- | ---- | ----
+response | TEXT | Y | User Id provided by the server
+information | TEXT | N | Additional information.
+
+Fields Definition:
+* response – Response from server. Can contain one of the Server Responses.
+* information – Additional informations will be returned for specific responses. 
+
+Examlpe Message:
+```javascript
+{
+	'response': 'DECLINED',
+	'information': 'DEAD'
+}
+```
