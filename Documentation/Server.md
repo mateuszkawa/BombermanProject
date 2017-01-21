@@ -37,17 +37,36 @@ Every player starts with 1 bomb. Placed bomb explodes after 4 turns and default 
 ### 4.1 Registration Message
 Client message:
 
-Field Name | Type | Required |Short Description
----------- | ----- | ----- | -----
+Field Name | Type | Required | Short Description
+---- | ---- | ---- | ----
 user_name | TEXT | Y | Name of a bot should be provided
 
 Fields Definition:
-	user_name � This name would be used for scoring, state etc. Purposes.
+* user_name – This name would be used for scoring, state etc. Purposes.
 
 Examlpe Message:
-```json
+```javascript
 {
 	'user_name': 'Example_bot_1'
 }
 ```
 Server response:
+
+Field Name | Type | Required | Short Description
+---- | ---- | ---- | ----
+user_id | TEXT | Y | Unique Id set by the server for identification purposes.
+time_left | LONG | Y | Time left in miliseconds for this particular phase (registration).
+
+Fields Definition:
+* user_id – This Id is required for simple authentication. Can be for example MD5 with added random seed counted from provided user name.
+* time_left – This is number of miliseconds that's left in order to finish this part of server state.
+
+Example Message:
+```javascript
+{
+	'user_id': 'a687346006dd2d95cf33d10cf10b2a9d',
+	'time_left': 10000
+}
+```
+
+
