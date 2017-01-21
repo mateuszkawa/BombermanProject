@@ -23,7 +23,7 @@ Players are fighting, by placing bombs, on a rectangle map. Map should be genera
 * For every user at least one combination of moves should be possible: (MOVE_UP, MOVE_RIGHT), (MOVE_UP, MOVE_LEFT), (MOVE_DOWN, MOVE_RIGHT), (MOVE_DOWN, MOVE_LEFT). This allows player to have a free tile to place a bomb;
 * At every odd number of column and and row (for example: (1,1)) field_type is set as INDESTRUCTIBLE;
 * There should be at least 30% of DESTRUCTIBLE tiles;
-* Every DESTRUCTIBLE should have 20% of chance to drop an UPGRADE;
+* Every DESTRUCTIBLE should have 20% of chance to drop an [UPGRADE](#532-occupied_upgrade);
 
 Every player starts with 1 bomb. Placed bomb explodes after 4 turns and default radius is 3. Explosion effects:
 
