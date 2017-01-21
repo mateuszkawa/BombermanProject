@@ -94,12 +94,14 @@ Server response:
 Field Name | Type | Required | Short Description
 ---- | ---- | ---- | ----
 actual_state | DICT | Y | Actual map for this round.
+state_number | LONG | Y | Actual round.
 map_size | TUPLE | Y | Map size height and width
 user_position | TUPLE | N | User position
 time_left | LONG | Y | Time left in miliseconds for this particular phase (registration).
 
 Fields Definition:
 * actual_state – It is a dict that represents actual state. It is further defined in State Definition.
+* state_number - Unique round identificator for actual state.
 * map_size – 2arg tuple that contains 2 Integer numbers. First one is height of the map and second is width. They are indicating number of fields for example map_size (3, 4) would look like this:
 
 | | | | |
@@ -133,6 +135,7 @@ Examlpe Message:
 			'field_type': 'INDESTRUCTIBLE'
 		}
 	},
+	'state_number': 17,
 	'map_size': (2, 2),
 	'user_position': (1,1),
 	'time_left': 190
@@ -165,16 +168,19 @@ Field Name | Type | Required | Short Description
 ---- | ---- | ---- | ----
 response | TEXT | Y | User Id provided by the server
 information | TEXT | N | Additional information.
+state_number | LONG | Y | Actual round.
 
 Fields Definition:
 * response – Response from server. Can contain one of the Server Responses.
 * information – Additional informations will be returned for specific responses. 
+* state_number - Unique round identificator for actual state.
 
 Examlpe Message:
 ```javascript
 {
 	'response': 'DECLINED',
-	'information': 'DEAD'
+	'information': 'DEAD',
+	'state_number': 76
 }
 ```
 
