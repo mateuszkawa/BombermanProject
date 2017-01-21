@@ -251,13 +251,5 @@ Possible server responses on user action.
 Response | Description
 ---- | ----
 ACCEPTED | Action accepted.
-DECLINED | Action declined. As additional information a couse will be returned.
-OVERWRITTEN | Action for this round has been updated and overwritten. Previous acction will be returned.
-
-#### 5.4.1 DECLINED
-All possible decline additional information:
-
-Response | Description
----- | ----
 CANNOT_MOVE | This move cannot be performed. Field is probably occupied.
 DEAD | User with specified userID is already dead and cannot perform any actions.
