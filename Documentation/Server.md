@@ -80,7 +80,7 @@ action | TEXT | Y | Action name for getting actual state purposes.
 
 Fields Definition:
 * user_id – User Id that was returned from the server for identification purposes. If this filed is provided then server should return actual position of this particular user.
-* action – One of the Action Name from action list (take a look at Actions)
+* action – One of the Action Name from action list (take a look at [Actions](#52-actions))
 
 Examlpe Message:
 ```javascript
@@ -100,7 +100,7 @@ user_position | TUPLE | N | User position
 time_left | LONG | Y | Time left in miliseconds for this state.
 
 Fields Definition:
-* actual_state – It is a dict that represents actual state. It is further defined in State Definition.
+* actual_state – It is a dict that represents actual state. It is further defined in [State Definition](#51-state-definition).
 * state_number - Unique round identificator for actual state.
 * map_size – 2arg tuple that contains 2 Integer numbers. First one is height of the map and second is width. They are indicating number of fields for example map_size (3, 4) would look like this:
 
@@ -152,7 +152,7 @@ action | TEXT | Y | Action name chosen by user.
 
 Fields Definition:
 * user_id – User Id that was returned from the server for identification purposes.
-* action – One of the Action Name from action list (take a look at Actions)
+* action – One of the Action Name from action list (take a look at [Actions](#52-actions))
 
 Examlpe Message:
 ```javascript
@@ -172,7 +172,7 @@ state_number | LONG | Y | Actual round.
 time_left | LONG | Y | Time left in miliseconds for this state.
 
 Fields Definition:
-* response – Response from server. Can contain one of the Server Responses.
+* response – Response from server. Can contain one of the [Server Responses](#54-server-responses).
 * information – Additional informations will be returned for specific responses. 
 * state_number - Unique round identificator for actual state.
 
@@ -191,8 +191,8 @@ Examlpe Message:
 	
 Field Name | Type | Required | Short Description
 ---- | ---- | ---- | ----
-field_type | TEXT | Y | Field type.
-Additional fields depends on field type.
+field_type | TEXT | Y | [Field type](#53-field-types).
+Additional fields depends on [Field type](#53-field-types).
 
 ### 5.2 Actions
 List of available actions that user can send to server.
