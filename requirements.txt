@@ -1,0 +1,10 @@
+# 
+####### requirements.txt #######
+#
+###### run with: ######
+###### pip3 install -r requirements.txt ######
+###### Requirements without Version Specifiers ######
+pygame
+numpy
+tornado
+mako
