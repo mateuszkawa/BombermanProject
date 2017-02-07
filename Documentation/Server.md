@@ -93,7 +93,7 @@ Server response:
 
 Field Name | Type | Required | Short Description
 ---- | ---- | ---- | ----
-actual_state | DICT | Y | Actual map for this round.
+actual_state | LIST | Y | Actual map for this round.
 state_number | LONG | Y | Actual round.
 map_size | TUPLE | Y | Map size height and width
 user_position | TUPLE | N | User position
@@ -116,22 +116,18 @@ Fields Definition:
 Examlpe Message:
 ```javascript
 {
-	'actual_state': {
-		(0, 0): {
+	'actual_state': [{
 			'field_type': 'OCCUPIED_BOMB',
 			'bomb_turns_left': 2,
 			'bomb_range': 3
-		},
-		(0, 1): {
+		},{
 			'field_type': 'OCCUPIED_USER',
 			'user_name': 'Example_bot_1',
 			'bombs_left': 0
-		},
-		(1, 0): {
+		},{
 			'field_type': 'OCCUPIED_UPGRADE',
 			'upgrade_type': 'ADDITIONAL_BOMB'
-		},
-		(1, 1): {
+		},{
 			'field_type': 'INDESTRUCTIBLE'
 		}
 	},
